@@ -9,7 +9,7 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
           <div className={css.wrapper}>
         {options.map(type => {
           return (
-            <btn
+            <button
               className={css.typeBtn}
               type="button"
               name={type}
@@ -17,7 +17,7 @@ const FeedbackOptions = ({ options, onLeaveFeedback }) => {
               onClick={() => onLeaveFeedback(type)}
             >
               {type}
-            </btn>
+            </button>
           );
         })}
       </div>

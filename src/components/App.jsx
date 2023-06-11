@@ -1,20 +1,21 @@
-import { useState } from 'react';
+import  { useState } from 'react';
+import PropTypes from 'prop-types';
 import Statistics from './Statistics/Statistics';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Notification from 'components/Notification/Notification';
-import css from './App.module.css'
+import css from './App.module.css';
 
-export const App = () => {
-   const [feedback, setFeedback] = useState({
+const App = () => {
+  const [feedback, setFeedback] = useState({
     good: 0,
     neutral: 0,
     bad: 0,
   });
 
-  const handleFeedback = type => {
-    setFeedback(state => ({
-      ...state,
-      [type]: state[type] + 1,
+  const handleFeedback = (type) => {
+    setFeedback((prevState) => ({
+      ...prevState,
+      [type]: prevState[type] + 1,
     }));
   };
 
@@ -30,8 +31,9 @@ export const App = () => {
 
   const positivePercentage = countPositiveFeedbackPercentage();
   const total = countTotalFeedback();
+
   return (
-    <div className={css.Conteiner}>
+    <div className={css.Container}>
       <FeedbackOptions
         options={Object.keys(feedback)}
         onLeaveFeedback={handleFeedback}
@@ -51,3 +53,13 @@ export const App = () => {
     </div>
   );
 };
+
+App.propTypes = {
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+  total: PropTypes.number,
+  positivePercentage: PropTypes.number,
+};
+
+export default App;
